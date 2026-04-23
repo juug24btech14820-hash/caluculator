@@ -1,27 +1,73 @@
 body {
-    background: #0f172a;
+    background: black;
+    color: #00ff00;
+    font-family: "Courier New", monospace;
     display: flex;
     justify-content: center;
-    margin-top: 100px;
-    font-family: Arial;
+    align-items: center;
+    height: 100vh;
 }
 
-.calculator {
-    background: #1e293b;
+/* Terminal box */
+.container {
+    border: 2px solid #00ff00;
     padding: 20px;
-    border-radius: 10px;
+    width: 350px;
+    box-shadow: 0 0 20px #00ff00;
 }
 
-#display {
+/* Title */
+h1 {
+    text-align: center;
+}
+
+/* Input */
+input {
     width: 100%;
     padding: 10px;
+    background: black;
+    color: #00ff00;
+    border: 1px solid #00ff00;
     margin-bottom: 10px;
-    font-size: 18px;
 }
 
+/* Buttons */
 button {
-    width: 50px;
-    height: 40px;
+    background: black;
+    color: #00ff00;
+    border: 1px solid #00ff00;
+    padding: 8px;
     margin: 5px;
     cursor: pointer;
+}
+
+button:hover {
+    background: #00ff00;
+    color: black;
+}
+
+/* Task list */
+li {
+    list-style: none;
+    padding: 8px;
+    border-bottom: 1px solid #00ff00;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Completed */
+.completed {
+    text-decoration: line-through;
+    opacity: 0.6;
+}
+
+/* Message */
+#message {
+    color: red;
+    font-size: 12px;
+}
+
+/* Counter */
+#count {
+    margin-top: 10px;
 }

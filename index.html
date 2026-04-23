@@ -1,38 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Calculator</title>
+    <title>Hacker Task Manager</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="calculator">
-    <input type="text" id="display" disabled>
+<div class="container">
+    <h1>⚡ Task Terminal</h1>
 
-    <div class="buttons">
-        <button onclick="clearDisplay()">C</button>
-        <button onclick="appendValue('7')">7</button>
-        <button onclick="appendValue('8')">8</button>
-        <button onclick="appendValue('9')">9</button>
+    <input type="text" id="taskInput" placeholder="> Enter command...">
+    <p id="message"></p>
 
-        <button onclick="appendValue('4')">4</button>
-        <button onclick="appendValue('5')">5</button>
-        <button onclick="appendValue('6')">6</button>
+    <button onclick="addTask()">Execute</button>
+    <button onclick="clearAll()">Clear Logs</button>
 
-        <button onclick="appendValue('1')">1</button>
-        <button onclick="appendValue('2')">2</button>
-        <button onclick="appendValue('3')">3</button>
+    <h3 id="count">0 Tasks</h3>
 
-        <button onclick="appendValue('0')">0</button>
-        <button onclick="appendValue('+')">+</button>
-        <button onclick="appendValue('-')">-</button>
-        <button onclick="appendValue('*')">*</button>
-        <button onclick="appendValue('/')">/</button>
-
-        <button onclick="calculate()">=</button>
-    </div>
+    <ul id="taskList"></ul>
 </div>
 
 <script src="script.js"></script>
+
 </body>
 </html>
