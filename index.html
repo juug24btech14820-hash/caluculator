@@ -1,27 +1,192 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Hacker Task Manager</title>
+<title>Phone Calculator</title>
 
-    <link rel="stylesheet" href="style.css">
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:#050505;
+}
+
+/* glowing background */
+body::before{
+    content:"";
+    position:absolute;
+    width:400px;
+    height:400px;
+    background:linear-gradient(45deg,#00f5ff,#ff00ff);
+    filter:blur(120px);
+    top:10%;
+    left:10%;
+}
+
+body::after{
+    content:"";
+    position:absolute;
+    width:400px;
+    height:400px;
+    background:linear-gradient(45deg,#00ff88,#0066ff);
+    filter:blur(120px);
+    bottom:10%;
+    right:10%;
+}
+
+/* phone frame */
+.phone{
+    width:320px;
+    height:600px;
+    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.1);
+    border-radius:40px;
+    backdrop-filter:blur(15px);
+    box-shadow:0 0 40px rgba(0,0,0,0.8);
+    padding:20px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    z-index:1;
+}
+
+/* top notch */
+.notch{
+    width:120px;
+    height:20px;
+    background:#111;
+    border-radius:20px;
+    margin:0 auto;
+    margin-bottom:10px;
+}
+
+/* display */
+.display{
+    height:120px;
+    background:rgba(0,0,0,0.4);
+    border-radius:15px;
+    color:#00f5ff;
+    font-size:32px;
+    display:flex;
+    align-items:flex-end;
+    justify-content:flex-end;
+    padding:15px;
+    overflow:hidden;
+    box-shadow:inset 0 0 10px rgba(0,245,255,0.2);
+}
+
+/* buttons grid */
+.buttons{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:10px;
+}
+
+button{
+    padding:18px;
+    border:none;
+    border-radius:12px;
+    font-size:18px;
+    cursor:pointer;
+    transition:0.2s;
+    background:rgba(255,255,255,0.08);
+    color:white;
+}
+
+button:hover{
+    transform:scale(1.05);
+    box-shadow:0 0 10px #00f5ff;
+}
+
+.operator{
+    color:#00f5ff;
+    font-weight:bold;
+}
+
+.equal{
+    background:linear-gradient(45deg,#00f5ff,#00ff88);
+    color:#000;
+    font-weight:bold;
+}
+
+.clear{
+    background:linear-gradient(45deg,#ff004c,#ff7a00);
+}
+</style>
+
 </head>
+
 <body>
 
-<div class="container">
-    <h1>⚡ Task Terminal</h1>
+<div class="phone">
 
-    <input type="text" id="taskInput" placeholder="> Enter command...">
-    <p id="message"></p>
+    <div class="notch"></div>
 
-    <button onclick="addTask()">Execute</button>
-    <button onclick="clearAll()">Clear Logs</button>
+    <div class="display" id="display">0</div>
 
-    <h3 id="count">0 Tasks</h3>
+    <div class="buttons">
+        <button class="clear" onclick="clearDisplay()">C</button>
+        <button class="operator" onclick="append('/')">/</button>
+        <button class="operator" onclick="append('*')">*</button>
+        <button class="operator" onclick="append('-')">-</button>
 
-    <ul id="taskList"></ul>
+        <button onclick="append('7')">7</button>
+        <button onclick="append('8')">8</button>
+        <button onclick="append('9')">9</button>
+        <button class="operator" onclick="append('+')">+</button>
+
+        <button onclick="append('4')">4</button>
+        <button onclick="append('5')">5</button>
+        <button onclick="append('6')">6</button>
+        <button onclick="deleteLast()">⌫</button>
+
+        <button onclick="append('1')">1</button>
+        <button onclick="append('2')">2</button>
+        <button onclick="append('3')">3</button>
+        <button class="equal" onclick="calculate()">=</button>
+
+        <button onclick="append('0')">0</button>
+        <button onclick="append('.')">.</button>
+    </div>
+
 </div>
 
-<script src="script.js"></script>
+<script>
+let display = document.getElementById("display");
+
+function append(val){
+    if(display.innerText === "0"){
+        display.innerText = val;
+    }else{
+        display.innerText += val;
+    }
+}
+
+function clearDisplay(){
+    display.innerText = "0";
+}
+
+function deleteLast(){
+    display.innerText = display.innerText.slice(0,-1);
+    if(display.innerText === "") display.innerText = "0";
+}
+
+function calculate(){
+    try{
+        display.innerText = eval(display.innerText);
+    }catch{
+        display.innerText = "Error";
+    }
+}
+</script>
 
 </body>
 </html>
